@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tirth Studio | Wedding & Kids Photography</title>
+  <meta name="description" content="Luxury wedding, maternity, kids and family photography in Ahmedabad by Tirth Studio." />
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --card: #121212;
+      --soft: #1a1a1a;
+      --text: #f5f1eb;
+      --muted: #c4b7a6;
+      --gold: #d6b36a;
+      --gold-dark: #9c7a37;
+      --border: rgba(214, 179, 106, 0.18);
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 11, 11, 0.86);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .menu {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover { background: var(--gold); color: #101010; }
+    .btn.primary { background: var(--gold); color: #101010; font-weight: 700; }
+    .btn.primary:hover { background: #e6c17b; }
+
+    .hero {
+      min-height: 92vh;
+      position: relative;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(8,8,8,0.55), rgba(8,8,8,0.8)),
+        url('./images/hero.jpg') center/cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(214,179,106,0.18), transparent 30%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(92%, 820px);
+      margin: 0 auto;
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 5.7rem);
+      line-height: 1.08;
+      margin: 0 0 18px;
+      font-weight: 500;
+    }
+
+    .hero p {
+      width: min(100%, 720px);
+      margin: 0 auto 32px;
+      font-size: 1.05rem;
+      color: #e7ddcf;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    section { padding: 84px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin: 0 0 8px;
+      font-weight: 500;
+    }
+
+    .section-head p,
+    .muted {
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .grid-portfolio {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card-photo {
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card-photo:hover img { transform: scale(1.04); }
+
+    .card-photo.large { grid-column: span 7; }
+    .card-photo.medium { grid-column: span 5; }
+    .card-photo.small { grid-column: span 4; }
+
+    .overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.82));
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .overlay span:first-child {
+      font-size: 1.05rem;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      color: #f6eddc;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(214,179,106,0.05), rgba(214,179,106,0.015));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      background: var(--soft);
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      padding: 34px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #141414, #101010);
+    }
+
+    .pricing-card h3 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .price {
+      font-size: 3rem;
+      color: var(--gold);
+      margin: 10px 0 16px;
+    }
+
+    .features {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0 26px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .features div {
+      padding: 12px 14px;
+      background: #171717;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #141414;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    .note {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    footer {
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 99;
+      background: #25d366;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 14px 18px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .menu { display: none; }
+      .about,
+      .pricing-wrap,
+      .contact-grid,
+      .stats { grid-template-columns: 1fr; }
+      .card-photo.large,
+      .card-photo.medium,
+      .card-photo.small { grid-column: span 12; }
+      .section-head { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <img src="./images/logo.png" alt="Tirth Studio Logo" class="brand-logo" />
+        <span>Tirth Studio</span>
+      </a>
+      <nav class="menu">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="https://instagram.com/tirthstudiophotography" target="_blank" rel="noreferrer">Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow">Ahmedabad • Luxury Wedding • Kids Photography</div>
+        <h1>Timeless stories, crafted with elegance.</h1>
+        <p>
+          Premium wedding, maternity, kids and family photography for clients who want artistic visuals,
+          cinematic storytelling, and unforgettable albums.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#contact">Check Availability</a>
+          <a class="btn" href="#portfolio">View Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Portfolio</div>
+            <h2>Signature collections</h2>
+          </div>
+          <p>Replace these sample images with your own photos inside the <strong>images</strong> folder.</p>
+        </div>
+
+        <div class="grid-portfolio">
+          <article class="card-photo large">
+            <img src="./images/wedding-1.jpg" alt="Wedding photography sample" />
+            <div class="overlay"><span>Wedding Stories</span><span class="tag">Luxury</span></div>
+          </article>
+          <article class="card-photo medium">
+            <img src="./images/kids-1.jpg" alt="Kids photography sample" />
+            <div class="overlay"><span>Kids Portraits</span><span class="tag">Studio</span></div>
+          </article>
+          <article class="card-photo small">
+            <img src="./images/maternity-1.jpg" alt="Maternity photography sample" />
+            <div class="overlay"><span>Maternity</span><span class="tag">Elegant</span></div>
+          </article>
+          <article class="card-photo small">
+            <img src="./images/family-1.jpg" alt="Family photography sample" />
+            <div class="overlay"><span>Family</span><span class="tag">Warm</span></div>
+          </article>
+          <article class="card-photo medium">
+            <img src="./images/wedding-2.jpg" alt="Candid wedding sample" />
+            <div class="overlay"><span>Candid Moments</span><span class="tag">Storytelling</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div class="panel">
+          <div class="eyebrow">About</div>
+          <h2 style="margin-top:0; font-size:clamp(1.8rem,4vw,3rem); font-weight:500;">A refined visual experience for your most meaningful moments.</h2>
+          <p class="muted">
+            Tirth Studio blends emotion, styling, and cinematic aesthetics to create wedding and portrait imagery
+            that feels premium, timeless, and deeply personal.
+          </p>
+          <div class="stats">
+            <div class="stat"><strong>100+</strong><span class="muted">Portrait sessions</span></div>
+            <div class="stat"><strong>Luxury</strong><span class="muted">Editing style</span></div>
+            <div class="stat"><strong>Ahmedabad</strong><span class="muted">Based studio</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <img src="./images/about.jpg" alt="Studio sample photo" style="border-radius:22px; height:100%; object-fit:cover; min-height:360px;" />
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Wedding Package</div>
+            <h2>Modern luxury coverage</h2>
+          </div>
+          <p>Update pricing, package lines, and WhatsApp number whenever you want.</p>
+        </div>
+
+        <div class="pricing-wrap">
+          <div class="pricing-card">
+            <h3>Complete Wedding Experience</h3>
+            <div class="price">₹2,50,000</div>
+            <p class="muted">A premium package designed for multi-event wedding storytelling.</p>
+            <div class="features">
+              <div>1 Cinematographer with drone and gimbal included</div>
+              <div>2 Photographers — 1 candid, 1 traditional</div>
+              <div>2 wedding albums with 200 photos each</div>
+              <div>5 highlight reels — Mehndi, Ganesh Sthapna, Sangeet, Haldi, Marriage</div>
+              <div>1 main cinematic video covering all events</div>
+            </div>
+            <a class="btn primary" href="https://wa.me/919999999999?text=Hi%20Tirth%20Studio,%20I%20want%20to%20check%20wedding%20availability." target="_blank" rel="noreferrer">Book on WhatsApp</a>
+          </div>
+
+          <div class="pricing-card">
+            <h3>Why clients choose us</h3>
+            <div class="features">
+              <div>Premium editing and luxury presentation</div>
+              <div>Creative direction for each event mood</div>
+              <div>Timeless album storytelling</div>
+              <div>Fast and professional communication</div>
+            </div>
+            <p class="note">Tip: You can duplicate this pricing card later for maternity, kids, or family packages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="panel">
+          <div class="eyebrow">Contact</div>
+          <h2 style="margin-top:0; font-size:clamp(1.8rem,4vw,3rem); font-weight:500;">Let’s create something unforgettable.</h2>
+          <p class="muted">
+            In the form action below, connect Formspree or another form tool later. For now, visitors can contact you through WhatsApp and Instagram.
+          </p>
+          <p><strong>Instagram:</strong> @tirthstudiophotography</p>
+          <p><strong>Website:</strong> www.tirthstudio.com</p>
+          <p><strong>Location:</strong> Ahmedabad, Gujarat</p>
+          <a class="btn" href="https://instagram.com/tirthstudiophotography" target="_blank" rel="noreferrer">Open Instagram</a>
+        </div>
+
+        <div class="panel">
+          <form>
+            <input type="text" placeholder="Your Name" />
+            <input type="text" placeholder="Event Date" />
+            <input type="text" placeholder="Phone / WhatsApp" />
+            <textarea placeholder="Tell us about your shoot or wedding"></textarea>
+            <button type="button" class="btn primary">Enquiry Form Preview</button>
+          </form>
+          <p class="note">This button is only a design preview. I can later convert it into a working contact form.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 Tirth Studio. All rights reserved.</span>
+      <span>Designed for a premium photography brand.</span>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/919999999999?text=Hi%20Tirth%20Studio,%20I%20want%20details." target="_blank" rel="noreferrer">WhatsApp</a>
+</body>
+</html>
